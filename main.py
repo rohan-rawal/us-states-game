@@ -20,6 +20,8 @@ while states:
     answer_state = screen.textinput(title=f"{score}/50 Guess the state", prompt="What's another State's name?")
     answer = answer_state.title()
 
+    if answer == "Exit":
+        break
     if answer in states:
         score += 1
         states.remove(answer)
@@ -29,6 +31,5 @@ while states:
         name_of_state.write(answer, align='center')
     
     
-    
-
-screen.exitonclick()
+states_missed = pd.Series(states)
+states_missed.to_csv("states_to_learn.csv")
